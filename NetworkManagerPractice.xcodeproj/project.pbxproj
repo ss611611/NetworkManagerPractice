@@ -20,7 +20,20 @@
 		EE96134B2C2C0A1100CF3A1E /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613452C2C0A1100CF3A1E /* URL+.swift */; };
 		EE96134C2C2C0A1100CF3A1E /* URLCache+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613462C2C0A1100CF3A1E /* URLCache+.swift */; };
 		EE96134D2C2C0A1100CF3A1E /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613472C2C0A1100CF3A1E /* URLSession+.swift */; };
+		EE9613512C2C113100CF3A1E /* CatAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613502C2C113100CF3A1E /* CatAPIManager.swift */; };
+		EEC518012C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC518002C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift */; };
+		EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EEC518022C2CF3DA009CC5EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE96131A2C2C08EE00CF3A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE9613212C2C08EE00CF3A1E;
+			remoteInfo = NetworkManagerPractice;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EE9613222C2C08EE00CF3A1E /* NetworkManagerPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkManagerPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,10 +50,21 @@
 		EE9613452C2C0A1100CF3A1E /* URL+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		EE9613462C2C0A1100CF3A1E /* URLCache+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLCache+.swift"; sourceTree = "<group>"; };
 		EE9613472C2C0A1100CF3A1E /* URLSession+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
+		EE9613502C2C113100CF3A1E /* CatAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAPIManager.swift; sourceTree = "<group>"; };
+		EEC517FE2C2CF3DA009CC5EC /* NetworkManagerPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC518002C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerPracticeTests.swift; sourceTree = "<group>"; };
+		EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Env.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EE96131F2C2C08EE00CF3A1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEC517FB2C2CF3DA009CC5EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				EE9613242C2C08EE00CF3A1E /* NetworkManagerPractice */,
+				EEC517FF2C2CF3DA009CC5EC /* NetworkManagerPracticeTests */,
 				EE9613232C2C08EE00CF3A1E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EE9613222C2C08EE00CF3A1E /* NetworkManagerPractice.app */,
+				EEC517FE2C2CF3DA009CC5EC /* NetworkManagerPracticeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +95,7 @@
 		EE9613242C2C08EE00CF3A1E /* NetworkManagerPractice */ = {
 			isa = PBXGroup;
 			children = (
+				EEC518072C2CFE9A009CC5EC /* CatAPIManager */,
 				EE96133F2C2C092A00CF3A1E /* AppEntry.swift */,
 				EE96133B2C2C092000CF3A1E /* Screen */,
 				EE9613352C2C090800CF3A1E /* View */,
@@ -121,6 +148,23 @@
 			path = "../../../SwiftUIBeginnerCourse/Chapter 6/605/Extension";
 			sourceTree = "<group>";
 		};
+		EEC517FF2C2CF3DA009CC5EC /* NetworkManagerPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEC518002C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift */,
+			);
+			path = NetworkManagerPracticeTests;
+			sourceTree = "<group>";
+		};
+		EEC518072C2CFE9A009CC5EC /* CatAPIManager */ = {
+			isa = PBXGroup;
+			children = (
+				EE9613502C2C113100CF3A1E /* CatAPIManager.swift */,
+				EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */,
+			);
+			path = CatAPIManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,6 +185,24 @@
 			productReference = EE9613222C2C08EE00CF3A1E /* NetworkManagerPractice.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EEC517FD2C2CF3DA009CC5EC /* NetworkManagerPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEC518062C2CF3DA009CC5EC /* Build configuration list for PBXNativeTarget "NetworkManagerPracticeTests" */;
+			buildPhases = (
+				EEC517FA2C2CF3DA009CC5EC /* Sources */,
+				EEC517FB2C2CF3DA009CC5EC /* Frameworks */,
+				EEC517FC2C2CF3DA009CC5EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEC518032C2CF3DA009CC5EC /* PBXTargetDependency */,
+			);
+			name = NetworkManagerPracticeTests;
+			productName = NetworkManagerPracticeTests;
+			productReference = EEC517FE2C2CF3DA009CC5EC /* NetworkManagerPracticeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -153,6 +215,10 @@
 				TargetAttributes = {
 					EE9613212C2C08EE00CF3A1E = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					EEC517FD2C2CF3DA009CC5EC = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = EE9613212C2C08EE00CF3A1E;
 					};
 				};
 			};
@@ -170,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				EE9613212C2C08EE00CF3A1E /* NetworkManagerPractice */,
+				EEC517FD2C2CF3DA009CC5EC /* NetworkManagerPracticeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +251,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEC517FC2C2CF3DA009CC5EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -194,6 +268,8 @@
 				EE9613492C2C0A1100CF3A1E /* Decoding+.swift in Sources */,
 				EE96134B2C2C0A1100CF3A1E /* URL+.swift in Sources */,
 				EE96134A2C2C0A1100CF3A1E /* Operator+.swift in Sources */,
+				EE9613512C2C113100CF3A1E /* CatAPIManager.swift in Sources */,
+				EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */,
 				EE9613372C2C090800CF3A1E /* CatImageViewModel.swift in Sources */,
 				EE96134C2C2C0A1100CF3A1E /* URLCache+.swift in Sources */,
 				EE96133E2C2C092000CF3A1E /* HomeScreen.swift in Sources */,
@@ -205,7 +281,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEC517FA2C2CF3DA009CC5EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEC518012C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEC518032C2CF3DA009CC5EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE9613212C2C08EE00CF3A1E /* NetworkManagerPractice */;
+			targetProxy = EEC518022C2CF3DA009CC5EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EE96132E2C2C08EF00CF3A1E /* Debug */ = {
@@ -385,6 +477,50 @@
 			};
 			name = Release;
 		};
+		EEC518042C2CF3DA009CC5EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53JP7T2TYF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jackie.NetworkManagerPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkManagerPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NetworkManagerPractice";
+			};
+			name = Debug;
+		};
+		EEC518052C2CF3DA009CC5EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53JP7T2TYF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jackie.NetworkManagerPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkManagerPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NetworkManagerPractice";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -402,6 +538,15 @@
 			buildConfigurations = (
 				EE9613312C2C08EF00CF3A1E /* Debug */,
 				EE9613322C2C08EF00CF3A1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEC518062C2CF3DA009CC5EC /* Build configuration list for PBXNativeTarget "NetworkManagerPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEC518042C2CF3DA009CC5EC /* Debug */,
+				EEC518052C2CF3DA009CC5EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
