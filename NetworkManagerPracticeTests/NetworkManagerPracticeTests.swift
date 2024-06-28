@@ -11,22 +11,25 @@ import XCTest
 final class NetworkManagerPracticeTests: XCTestCase {
     var sut: CatAPIManager!
     
-    override func setUp() {
+    @MainActor override func setUp() {
         sut = .stub
     }
 
 
+    @MainActor
     func testGetImage() async throws {
         let images = try await sut.getImages()
         XCTAssertEqual(images.count, 10)
     }
     
+    @MainActor
     func testAddToFavorite() async throws {
         try await sut.addToFavorite(cat: [CatImageViewModel].stub.first!)
         let id = sut.favorites.first!.id
         XCTAssertEqual(100038507, id)
     }
     
+    @MainActor
     func testGetFavorite() async throws {
         do {
             try await sut.getFavorites()

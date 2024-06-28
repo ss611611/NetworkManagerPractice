@@ -22,6 +22,7 @@
 		EE96134C2C2C0A1100CF3A1E /* URLCache+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613462C2C0A1100CF3A1E /* URLCache+.swift */; };
 		EE96134D2C2C0A1100CF3A1E /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613472C2C0A1100CF3A1E /* URLSession+.swift */; };
 		EE9613512C2C113100CF3A1E /* CatAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613502C2C113100CF3A1E /* CatAPIManager.swift */; };
+		EEC4AE382C2EB49E002E1F5D /* View+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC4AE372C2EB49E002E1F5D /* View+Preview.swift */; };
 		EEC518012C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC518002C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift */; };
 		EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */; };
 		EEC5180B2C2D0CEC009CC5EC /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180A2C2D0CEC009CC5EC /* MySecret.swift */; };
@@ -56,6 +57,7 @@
 		EE9613462C2C0A1100CF3A1E /* URLCache+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLCache+.swift"; sourceTree = "<group>"; };
 		EE9613472C2C0A1100CF3A1E /* URLSession+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
 		EE9613502C2C113100CF3A1E /* CatAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAPIManager.swift; sourceTree = "<group>"; };
+		EEC4AE372C2EB49E002E1F5D /* View+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Preview.swift"; sourceTree = "<group>"; };
 		EEC517FE2C2CF3DA009CC5EC /* NetworkManagerPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC518002C2CF3DA009CC5EC /* NetworkManagerPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerPracticeTests.swift; sourceTree = "<group>"; };
 		EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Env.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				EE9613462C2C0A1100CF3A1E /* URLCache+.swift */,
 				EE9613472C2C0A1100CF3A1E /* URLSession+.swift */,
 				EE8A73952C2E67C40093D4BB /* View+MyUserFriendlyError.swift */,
+				EEC4AE372C2EB49E002E1F5D /* View+Preview.swift */,
 			);
 			name = Extension;
 			path = "../../../SwiftUIBeginnerCourse/Chapter 6/605/Extension";
@@ -296,6 +299,7 @@
 				EE96133E2C2C092000CF3A1E /* HomeScreen.swift in Sources */,
 				EEC5180D2C2D16B1009CC5EC /* CatAPIManager+Stub.swift in Sources */,
 				EE9613402C2C092A00CF3A1E /* AppEntry.swift in Sources */,
+				EEC4AE382C2EB49E002E1F5D /* View+Preview.swift in Sources */,
 				EE96133D2C2C092000CF3A1E /* FavoriteScreen.swift in Sources */,
 				EE96134D2C2C0A1100CF3A1E /* URLSession+.swift in Sources */,
 				EEC518102C2D6278009CC5EC /* FavoriteItem.swift in Sources */,

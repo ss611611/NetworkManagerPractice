@@ -7,9 +7,19 @@
 
 import Foundation
 
-final class CatAPIManager {
-    private(set) var favorites: [FavoriteItem] = []
+@MainActor
+final class CatAPIManager: ObservableObject {
+    @Published private(set) var favorites: [FavoriteItem] = [] 
     var getData: (Endpoint) async throws -> Data
+
+    init(favorites: [FavoriteItem] = [], getData: @escaping (Endpoint) async throws -> Data) {
+        self.favorites = favorites
+        self.getData = getData
+    }
+}
+
+// MARK: singleton
+extension CatAPIManager {
     
     static let shared = {
         let config = URLSessionConfiguration.default
@@ -24,15 +34,11 @@ final class CatAPIManager {
     static let preview = CatAPIManager(favorites: [CatImageViewModel].stub.enumerated().map { FavoriteItem(catImage: $0.element, id: $0.offset)
     }) {
         try? await Task.sleep(for: .seconds(1))
-        return $0.stub }
-    
-    
-    init(favorites: [FavoriteItem] = [], getData: @escaping (Endpoint) async throws -> Data) {
-        self.favorites = favorites
-        self.getData = getData
+        return $0.stub
     }
 }
 
+// MARK: interface
 extension CatAPIManager {
     func getImages() async throws -> [ImageResponse] {
         try await fetch(endpoint: .images)
@@ -70,8 +76,10 @@ extension CatAPIManager {
     }
 }
 
+
+// MARK: helper
 private extension CatAPIManager {
-    func fetch<T: Decodable>(endpoint: Endpoint) async throws -> T {
+    nonisolated func fetch<T: Decodable>(endpoint: Endpoint) async throws -> T {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
