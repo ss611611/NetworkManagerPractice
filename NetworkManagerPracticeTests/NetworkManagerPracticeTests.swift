@@ -9,7 +9,12 @@ import XCTest
 @testable import NetworkManagerPractice
 
 final class NetworkManagerPracticeTests: XCTestCase {
-    let sut = CatAPIManager.stub
+    var sut: CatAPIManager!
+    
+    override func setUp() {
+        sut = .stub
+    }
+
 
     func testGetImage() async throws {
         let images = try await sut.getImages()
@@ -17,16 +22,23 @@ final class NetworkManagerPracticeTests: XCTestCase {
     }
     
     func testAddToFavorite() async throws {
-        let id = try await sut.addToFavorite(imageID: "")
+        try await sut.addToFavorite(cat: [CatImageViewModel].stub.first!)
+        let id = sut.favorites.first!.id
         XCTAssertEqual(100038507, id)
     }
     
     func testGetFavorite() async throws {
         do {
-            let url = (try await sut.getFavorites()).first!.imageURL
+            try await sut.getFavorites()
+            let url = sut.favorites.first!.imageURL
             XCTAssertEqual(url, "https://cdn2.thecatapi.com/images/E8dL1Pqpz.jpg")
         } catch {
             XCTFail("\(error)")
         }
     }
+}
+
+
+extension CatAPIManager {
+    static var stub: CatAPIManager { .init(getData: { $0.stub }) }
 }

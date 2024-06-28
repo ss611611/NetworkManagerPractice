@@ -12,7 +12,7 @@ struct CatAPIMangerKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    var apiManger: CatAPIManager {
+    var apiManager: CatAPIManager {
         get { self[CatAPIMangerKey.self] }
         set { self[CatAPIMangerKey.self] = newValue }
     }
