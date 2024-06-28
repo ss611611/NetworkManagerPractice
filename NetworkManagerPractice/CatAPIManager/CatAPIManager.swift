@@ -32,7 +32,7 @@ extension CatAPIManager {
         try await fetch(endpoint: .images)
     }
     
-    func getFavorites() async throws -> [FavoriteResponse]{
+    func getFavorites() async throws -> [FavoriteItem]{
         try await fetch(endpoint: .favorites)
     }
     
@@ -42,6 +42,10 @@ extension CatAPIManager {
         let response: FavoriteCreationResponse = try await fetch(endpoint: .addToFavorite(bodyData: bodyData))
         
         return response.id
+    }
+    
+    func removeFromFavorite(id: Int) async throws {
+        let _ = try await getData(.removeFromFavorite(id: id))
     }
 }
 
@@ -68,34 +72,6 @@ extension CatAPIManager {
     struct FavoriteCreationResponse: Decodable {
         let id: Int
     }
-    
-    struct FavoriteResponse: Decodable {
-        let id: Int
-        let imageID: String
-        let createdAt: Date
-        let imageURL: URL
-
-        enum CodingKeys: String, CodingKey {
-            case id
-            case imageID = "image_id"
-            case createdAt = "created_at"
-            case image
-        }
-        
-        enum ImageCodingKeys: String, CodingKey {
-            case url
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.id = try container.decode(Int.self, forKey: .id)
-            self.imageID = try container.decode(String.self, forKey: .imageID)
-            self.createdAt = try container.decode(Date.self, forKey: .createdAt)
-            
-            let imageContainer = try container.nestedContainer(keyedBy: ImageCodingKeys.self, forKey: .image)
-            self.imageURL = try imageContainer.decode(URL.self, forKey: .url)
-        }
-    }
 }
 
 
@@ -104,6 +80,7 @@ extension CatAPIManager {
         case images
         case addToFavorite(bodyData: Data)
         case favorites
+        case removeFromFavorite(id: Int)
         
         var request: URLRequest {
             switch self {
@@ -120,6 +97,10 @@ extension CatAPIManager {
             case .favorites:
                 // TODO: 新增頁面參數
                 return URLRequest(url: "https://api.thecatapi.com/v1/favourites")
+            case .removeFromFavorite(id: let id):
+                var urlRequest = URLRequest(url: URL(string: "https://api.thecatapi.com/v1/favourites/\(id)")!)
+                urlRequest.httpMethod = "DELETE"
+                return urlRequest
             }
         }
     }

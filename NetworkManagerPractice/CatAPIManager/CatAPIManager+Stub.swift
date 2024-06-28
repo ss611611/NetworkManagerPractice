@@ -95,6 +95,8 @@ extension CatAPIManager.Endpoint {
     }
 }]
 """
+        case .removeFromFavorite:
+            string = ""
         }
         
         return Data(string.utf8)

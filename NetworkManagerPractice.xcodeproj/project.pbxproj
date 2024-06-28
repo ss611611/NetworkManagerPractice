@@ -25,6 +25,7 @@
 		EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */; };
 		EEC5180B2C2D0CEC009CC5EC /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180A2C2D0CEC009CC5EC /* MySecret.swift */; };
 		EEC5180D2C2D16B1009CC5EC /* CatAPIManager+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */; };
+		EEC518102C2D6278009CC5EC /* FavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180F2C2D6278009CC5EC /* FavoriteItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Env.swift"; sourceTree = "<group>"; };
 		EEC5180A2C2D0CEC009CC5EC /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Stub.swift"; sourceTree = "<group>"; };
+		EEC5180F2C2D6278009CC5EC /* FavoriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		EE9613242C2C08EE00CF3A1E /* NetworkManagerPractice */ = {
 			isa = PBXGroup;
 			children = (
+				EEC5180E2C2D623C009CC5EC /* Model */,
 				EEC518072C2CFE9A009CC5EC /* CatAPIManager */,
 				EE96133F2C2C092A00CF3A1E /* AppEntry.swift */,
 				EE96133B2C2C092000CF3A1E /* Screen */,
@@ -169,6 +172,14 @@
 				EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */,
 			);
 			path = CatAPIManager;
+			sourceTree = "<group>";
+		};
+		EEC5180E2C2D623C009CC5EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEC5180F2C2D6278009CC5EC /* FavoriteItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +294,7 @@
 				EE9613402C2C092A00CF3A1E /* AppEntry.swift in Sources */,
 				EE96133D2C2C092000CF3A1E /* FavoriteScreen.swift in Sources */,
 				EE96134D2C2C0A1100CF3A1E /* URLSession+.swift in Sources */,
+				EEC518102C2D6278009CC5EC /* FavoriteItem.swift in Sources */,
 				EEC5180B2C2D0CEC009CC5EC /* MySecret.swift in Sources */,
 				EE96133C2C2C092000CF3A1E /* CatImagesScreen.swift in Sources */,
 				EE9613362C2C090800CF3A1E /* CatImageView.swift in Sources */,
