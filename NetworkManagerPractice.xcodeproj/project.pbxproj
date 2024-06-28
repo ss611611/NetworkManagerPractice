@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE8A73962C2E67C40093D4BB /* View+MyUserFriendlyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A73952C2E67C40093D4BB /* View+MyUserFriendlyError.swift */; };
 		EE96132A2C2C08EF00CF3A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE9613292C2C08EF00CF3A1E /* Assets.xcassets */; };
 		EE96132D2C2C08EF00CF3A1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE96132C2C2C08EF00CF3A1E /* Preview Assets.xcassets */; };
 		EE9613362C2C090800CF3A1E /* CatImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9613332C2C090800CF3A1E /* CatImageView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE8A73952C2E67C40093D4BB /* View+MyUserFriendlyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+MyUserFriendlyError.swift"; sourceTree = "<group>"; };
 		EE9613222C2C08EE00CF3A1E /* NetworkManagerPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkManagerPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9613292C2C08EF00CF3A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE96132C2C2C08EF00CF3A1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				EE9613452C2C0A1100CF3A1E /* URL+.swift */,
 				EE9613462C2C0A1100CF3A1E /* URLCache+.swift */,
 				EE9613472C2C0A1100CF3A1E /* URLSession+.swift */,
+				EE8A73952C2E67C40093D4BB /* View+MyUserFriendlyError.swift */,
 			);
 			name = Extension;
 			path = "../../../SwiftUIBeginnerCourse/Chapter 6/605/Extension";
@@ -289,6 +292,7 @@
 				EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */,
 				EE9613372C2C090800CF3A1E /* CatImageViewModel.swift in Sources */,
 				EE96134C2C2C0A1100CF3A1E /* URLCache+.swift in Sources */,
+				EE8A73962C2E67C40093D4BB /* View+MyUserFriendlyError.swift in Sources */,
 				EE96133E2C2C092000CF3A1E /* HomeScreen.swift in Sources */,
 				EEC5180D2C2D16B1009CC5EC /* CatAPIManager+Stub.swift in Sources */,
 				EE9613402C2C092A00CF3A1E /* AppEntry.swift in Sources */,

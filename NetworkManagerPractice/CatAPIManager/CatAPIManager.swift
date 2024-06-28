@@ -49,7 +49,11 @@ extension CatAPIManager {
     }
     
     func removeFromFavorite(id: Int) async throws {
-        let _ = try await getData(.removeFromFavorite(id: id))
+        do {
+            let _ = try await getData(.removeFromFavorite(id: id))
+        } catch URLSession.APIError.invalidCode(400) {
+            // 不存在的最愛 ID
+        }
     }
 }
 
