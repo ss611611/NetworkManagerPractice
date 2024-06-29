@@ -11,6 +11,8 @@ import Foundation
 final class CatAPIManager: ObservableObject {
     @Published private(set) var favorites: [FavoriteItem] = [] 
     var getData: (Endpoint) async throws -> Data
+    
+    private let startDate = Date.now
 
     init(getData: @escaping (Endpoint) async throws -> Data) {
         self.getData = getData
@@ -44,12 +46,14 @@ extension CatAPIManager {
     
     func getFavorites(page: Int, limit: Int = 100) async -> FavoriteLoadingState {
         do {
-            let items: [FavoriteItem] = try await fetch(endpoint: .favorites(page: page, limit: limit))
+            var items: [FavoriteItem] = try await fetch(endpoint: .favorites(page: page, limit: limit))
+            while let lastItem = items.last, lastItem.createdAt > startDate {
+                items.removeLast()
+            }
             favorites += items
             let isLastPage = items.count < limit
             return .success(nextPage: isLastPage ? nil : page + 1)
         } catch {
-            print(error)
             return .fail(retryPage: page)
         }
     }
