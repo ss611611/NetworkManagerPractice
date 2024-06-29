@@ -32,7 +32,31 @@ final class NetworkManagerPracticeTests: XCTestCase {
     @MainActor
     func testGetFavorite() async throws {
         do {
-            try await sut.getFavorites()
+            try await sut.getFavorites(page: 0,limit: 5)
+            XCTAssertEqual(5, sut.favorites.count)
+            
+            sut = .stub
+            try await sut.getFavorites(page: 2,limit: 5)
+            XCTAssertEqual(3, sut.favorites.count)
+            
+            sut = .stub
+            try await sut.getFavorites(page: 5,limit: 5)
+            XCTAssertEqual(0, sut.favorites.count)
+        } catch {
+            XCTFail("❌ Unexpected Error: \(error)")
+        }
+    }
+    
+    @MainActor
+    func testFavoritePaginationAllPage() async throws {
+        do {
+            try await sut.getFavorites(page: 0,limit: 5)
+            XCTAssertEqual(5, sut.favorites.count)
+            
+            try await sut.getFavorites(page: 1,limit: 5)
+            XCTAssertEqual(10, sut.favorites.count)
+            
+            try await sut.getFavorites(page: 2,limit: 5)
             XCTAssertEqual(13, sut.favorites.count)
         } catch {
             XCTFail("❌ Unexpected Error: \(error)")

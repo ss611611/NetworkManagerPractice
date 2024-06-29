@@ -42,8 +42,8 @@ extension CatAPIManager {
         try await fetch(endpoint: .images)
     }
     
-    func getFavorites() async throws {
-        favorites = try await fetch(endpoint: .favorites)
+    func getFavorites(page: Int = 0, limit: Int = 100) async throws {
+        favorites += try await fetch(endpoint: .favorites(page: page, limit: limit))
     }
     
     func toggleFavorite(_ cat: CatImageViewModel) async throws {
@@ -94,50 +94,6 @@ private extension CatAPIManager {
             favorites.remove(at: index)
         } catch URLSession.APIError.invalidCode(400) {
             // 不存在的最愛 ID
-        }
-    }
-}
-
-extension CatAPIManager {
-    struct ImageResponse: Decodable {
-        let id: String
-        let url: URL
-        let width, height: CGFloat
-    }
-    
-    struct FavoriteCreationResponse: Decodable {
-        let id: Int
-    }
-}
-
-
-extension CatAPIManager {
-    enum Endpoint {
-        case images
-        case addToFavorite(bodyData: Data)
-        case favorites
-        case removeFromFavorite(id: Int)
-        
-        var request: URLRequest {
-            switch self {
-            case .images:
-                return URLRequest(url: "https://api.thecatapi.com/v1/images/search?limit=10")
-            case .addToFavorite(let bodyData):
-                var urlRequest = URLRequest(url: "https://api.thecatapi.com/v1/favourites")
-                urlRequest.httpMethod = "POST"
-                urlRequest.httpBody = bodyData
-                urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                
-                
-                return urlRequest
-            case .favorites:
-                // TODO: 新增頁面參數
-                return URLRequest(url: "https://api.thecatapi.com/v1/favourites")
-            case .removeFromFavorite(id: let id):
-                var urlRequest = URLRequest(url: URL(string: "https://api.thecatapi.com/v1/favourites/\(id)")!)
-                urlRequest.httpMethod = "DELETE"
-                return urlRequest
-            }
         }
     }
 }

@@ -28,6 +28,8 @@
 		EEC5180B2C2D0CEC009CC5EC /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180A2C2D0CEC009CC5EC /* MySecret.swift */; };
 		EEC5180D2C2D16B1009CC5EC /* CatAPIManager+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */; };
 		EEC518102C2D6278009CC5EC /* FavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5180F2C2D6278009CC5EC /* FavoriteItem.swift */; };
+		EEC6BA0C2C2FA1E000E8320A /* CatAPIManager+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6BA0B2C2FA1E000E8320A /* CatAPIManager+Endpoint.swift */; };
+		EEC6BA0E2C2FA22100E8320A /* CatAPIManager+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6BA0D2C2FA22100E8320A /* CatAPIManager+Response.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		EEC5180A2C2D0CEC009CC5EC /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Stub.swift"; sourceTree = "<group>"; };
 		EEC5180F2C2D6278009CC5EC /* FavoriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItem.swift; sourceTree = "<group>"; };
+		EEC6BA0B2C2FA1E000E8320A /* CatAPIManager+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Endpoint.swift"; sourceTree = "<group>"; };
+		EEC6BA0D2C2FA22100E8320A /* CatAPIManager+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatAPIManager+Response.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				EE9613502C2C113100CF3A1E /* CatAPIManager.swift */,
 				EEC518082C2CFECE009CC5EC /* CatAPIManager+Env.swift */,
 				EEC5180C2C2D16B1009CC5EC /* CatAPIManager+Stub.swift */,
+				EEC6BA0B2C2FA1E000E8320A /* CatAPIManager+Endpoint.swift */,
+				EEC6BA0D2C2FA22100E8320A /* CatAPIManager+Response.swift */,
 			);
 			path = CatAPIManager;
 			sourceTree = "<group>";
@@ -289,10 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE9613492C2C0A1100CF3A1E /* Decoding+.swift in Sources */,
+				EEC6BA0C2C2FA1E000E8320A /* CatAPIManager+Endpoint.swift in Sources */,
 				EE96134B2C2C0A1100CF3A1E /* URL+.swift in Sources */,
 				EE96134A2C2C0A1100CF3A1E /* Operator+.swift in Sources */,
 				EE9613512C2C113100CF3A1E /* CatAPIManager.swift in Sources */,
 				EEC518092C2CFECE009CC5EC /* CatAPIManager+Env.swift in Sources */,
+				EEC6BA0E2C2FA22100E8320A /* CatAPIManager+Response.swift in Sources */,
 				EE9613372C2C090800CF3A1E /* CatImageViewModel.swift in Sources */,
 				EE96134C2C2C0A1100CF3A1E /* URLCache+.swift in Sources */,
 				EE8A73962C2E67C40093D4BB /* View+MyUserFriendlyError.swift in Sources */,
