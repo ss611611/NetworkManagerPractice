@@ -30,41 +30,42 @@ final class NetworkManagerPracticeTests: XCTestCase {
     }
     
     @MainActor
-    func testGetFavorite() async throws {
-        do {
-            try await sut.getFavorites(page: 0,limit: 5)
+    func testFavoritePaginatingAllPage() async {
+            let testFirstRequest = await sut.getFavorites(page: 0, limit: 5)
+            XCTAssertEqual(testFirstRequest, .success(nextPage: 1))
             XCTAssertEqual(5, sut.favorites.count)
-            
-            sut = .stub
-            try await sut.getFavorites(page: 2,limit: 5)
-            XCTAssertEqual(3, sut.favorites.count)
-            
-            sut = .stub
-            try await sut.getFavorites(page: 5,limit: 5)
-            XCTAssertEqual(0, sut.favorites.count)
-        } catch {
-            XCTFail("❌ Unexpected Error: \(error)")
+
+            let testSecondRequest = await sut.getFavorites(page: 1, limit: 5)
+            XCTAssertEqual(testSecondRequest, .success(nextPage: 2))
+            XCTAssertEqual(10, sut.favorites.count)
+
+            let testThirdRequest = await sut.getFavorites(page: 2, limit: 5)
+            XCTAssertEqual(testThirdRequest, .success(nextPage: nil))
+            XCTAssertEqual(13, sut.favorites.count)
         }
-    }
     
     @MainActor
-    func testFavoritePaginationAllPage() async throws {
-        do {
-            try await sut.getFavorites(page: 0,limit: 5)
-            XCTAssertEqual(5, sut.favorites.count)
-            
-            try await sut.getFavorites(page: 1,limit: 5)
-            XCTAssertEqual(10, sut.favorites.count)
-            
-            try await sut.getFavorites(page: 2,limit: 5)
-            XCTAssertEqual(13, sut.favorites.count)
-        } catch {
-            XCTFail("❌ Unexpected Error: \(error)")
+    func testFavoritePagination() async {
+            await runFavoriteFetchTestHelper(page: 1, limit: 5, expectedState: .success(nextPage: 2), expectedResultCount: 5)
+            await runFavoriteFetchTestHelper(page: 2, limit: 5, expectedState: .success(nextPage: nil), expectedResultCount: 3)
+            await runFavoriteFetchTestHelper(page: 5, limit: 5, expectedState: .success(nextPage: nil), expectedResultCount: 0)
         }
-    }
 }
 
 
 extension CatAPIManager {
-    static var stub: CatAPIManager { .init(getData: { $0.stub }) }
+    static var stub: CatAPIManager { .init(getData: \.stub) }
 }
+
+// MARK: helper
+extension NetworkManagerPracticeTests {
+    func runFavoriteFetchTestHelper(page: Int, limit: Int, expectedState: FavoriteLoadingState, expectedResultCount: Int) async {
+        sut = await .stub
+        let result = await sut.getFavorites(page: page, limit: limit)
+        XCTAssertEqual(result, expectedState)
+        
+        let favoriteCount = await MainActor.run { sut.favorites.count }
+        XCTAssertEqual(favoriteCount, expectedResultCount)
+    }
+}
+
