@@ -26,10 +26,10 @@ extension CatAPIManager {
                 
                 
                 return urlRequest
-            case .favorites:
-                // TODO: 新增頁面參數
-                return URLRequest(url: "https://api.thecatapi.com/v1/favourites")
-            case .removeFromFavorite(id: let id):
+            case .favorites(let page, let limit):
+                return URLRequest(url: .init(string: "https://api.thecatapi.com/v1/favourites?page=\(page)&limit=\(limit)")!)
+                
+            case .removeFromFavorite(let id):
                 var urlRequest = URLRequest(url: URL(string: "https://api.thecatapi.com/v1/favourites/\(id)")!)
                 urlRequest.httpMethod = "DELETE"
                 return urlRequest

@@ -42,8 +42,16 @@ extension CatAPIManager {
         try await fetch(endpoint: .images)
     }
     
-    func getFavorites(page: Int = 0, limit: Int = 100) async throws {
-        favorites += try await fetch(endpoint: .favorites(page: page, limit: limit))
+    func getFavorites(page: Int, limit: Int = 100) async -> FavoriteLoadingState {
+        do {
+            let items: [FavoriteItem] = try await fetch(endpoint: .favorites(page: page, limit: limit))
+            favorites += items
+            let isLastPage = items.count < limit
+            return .success(nextPage: isLastPage ? nil : page + 1)
+        } catch {
+            print(error)
+            return .fail(retryPage: page)
+        }
     }
     
     func toggleFavorite(_ cat: CatImageViewModel) async throws {
