@@ -12,8 +12,7 @@ final class CatAPIManager: ObservableObject {
     @Published private(set) var favorites: [FavoriteItem] = [] 
     var getData: (Endpoint) async throws -> Data
 
-    init(favorites: [FavoriteItem] = [], getData: @escaping (Endpoint) async throws -> Data) {
-        self.favorites = favorites
+    init(getData: @escaping (Endpoint) async throws -> Data) {
         self.getData = getData
     }
 }
@@ -31,8 +30,7 @@ extension CatAPIManager {
         return CatAPIManager { try await session.data(for: $0.request) }
     }()
     
-    static let preview = CatAPIManager(favorites: [CatImageViewModel].stub.enumerated().map { FavoriteItem(catImage: $0.element, id: $0.offset)
-    }) {
+    static let preview = CatAPIManager {
         try? await Task.sleep(for: .seconds(1))
         return $0.stub
     }

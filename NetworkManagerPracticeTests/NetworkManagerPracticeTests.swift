@@ -33,10 +33,9 @@ final class NetworkManagerPracticeTests: XCTestCase {
     func testGetFavorite() async throws {
         do {
             try await sut.getFavorites()
-            let url = sut.favorites.first!.imageURL
-            XCTAssertEqual(url, "https://cdn2.thecatapi.com/images/E8dL1Pqpz.jpg")
+            XCTAssertEqual(13, sut.favorites.count)
         } catch {
-            XCTFail("\(error)")
+            XCTFail("❌ Unexpected Error: \(error)")
         }
     }
 }
