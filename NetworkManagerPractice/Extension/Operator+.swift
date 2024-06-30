@@ -2,7 +2,7 @@
 //  Operator+.swift
 //  NetworkManagerPractice
 //
-//  Created by Jane Chao on 2023/4/1.
+//  Created by Jackie Lu on 2024/6/27.
 //
 
 import Foundation

@@ -2,17 +2,18 @@
 //  CatImagesScreen.swift
 //  NetworkManagerPractice
 //
-//  Created by Jane Chao on 2023/4/1.
+//  Created by Jackie Lu on 2024/6/27.
 //
 
 import SwiftUI
 
+
 struct CatImageScreen: View {
-    @Environment(\.apiManager) private var apiManger
-    @Binding var favorites: [CatImageViewModel]
+    @EnvironmentObject private var apiManager: CatAPIManager
     
     @State private var catImages: [CatImageViewModel] = []
-    @State private var didFirstLoad: Bool = false
+    @State private var isLoading: Bool = false
+    @State private var errorMessage: String?
     
     var body: some View {
         VStack {
@@ -21,67 +22,67 @@ struct CatImageScreen: View {
                     .font(.largeTitle.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Button("換一批") { Task { await loadRandomImages() } }
+                Button("換一批", action: loadRandomImages)
                     .buttonStyle(.bordered)
                     .font(.headline)
+                    .overlay {
+                        if isLoading {
+                            ProgressView()
+                        }
+                    }
+                    .disabled(isLoading)
             }.padding(.horizontal)
             
-            ScrollView {
-                ForEach(catImages) { catImage in
-                    let isFavourited = favorites.contains(where: \.id == catImage.id)
-                    CatImageView(catImage, isFavourited: isFavourited) {
-                        toggleFavorite(catImage)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    ForEach(catImages) { catImage in
+                        let isFavourited = apiManager.favorites.contains(where: \.imageID == catImage.id)
+                        CatImageView(catImage, isFavourited: isFavourited) {
+                                await toggleFavorite(catImage)
+                        }.id(catImage.id)
+                    }
+                }.onChange(of: catImages.first?.id) { newID in
+                    guard let newID else { return }
+                    withAnimation {
+                        proxy.scrollTo(newID)
                     }
                 }
             }
         }
-        .task {
-            if !didFirstLoad {
-                await loadRandomImages()
-                didFirstLoad = true
+        .alert(errorMessage: $errorMessage)
+        .onAppear {
+            if !catImages.isEmpty && !isLoading { return }
+            loadRandomImages()
+        }
+    }
+}
+
+private extension CatImageScreen {
+    func loadRandomImages() {
+        Task{
+            do {
+                isLoading = true
+                catImages = (try await apiManager.getImages()).map(CatImageViewModel.init)
+            } catch {
+                errorMessage = "無法載入圖片資料"
             }
+            isLoading = false
+        }
+    }
+    
+    func toggleFavorite(_ cat: CatImageViewModel) async {
+        do {
+            try await apiManager.toggleFavorite(cat)
+        } catch {
+            errorMessage = "無法更新最愛"
         }
     }
 }
 
-private extension CatImageScreen {
-    func loadRandomImages() async {
-        // FIXME: error handling
-        catImages = (try! await apiManger.getImages()).map(CatImageViewModel.init)
-    }
-    
-    func toggleFavorite(_ cat: CatImageViewModel) {
-        guard let index = favorites.firstIndex(where: \.id == cat.id)  else {
-            add(cat)
-            return
-        }
-        remove(index: index)
-    }
-}
 
-
-private extension CatImageScreen {
-    func add(_ cat: CatImageViewModel) {
-        favorites.append(cat)
-        // TODO: send update to the server
-    }
-    
-    func remove(index: Int) {
-        favorites.remove(at: index)
-        // TODO:  send update to the server
-    }
-}
-
-
-struct CatImageScreen_Previews: PreviewProvider, View {
-    @State private var favorites: [CatImageViewModel] = []
-    
-    var body: some View {
-        CatImageScreen(favorites: $favorites)
-    }
-    
+struct CatImageScreen_Previews: PreviewProvider {
     static var previews: some View {
-        Self()
-            .environment(\.apiManager, .stub)
+        CatImageScreen()
+            .previewEnvironmentObject(manager: .preview)
     }
 }

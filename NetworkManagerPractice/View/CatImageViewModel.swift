@@ -2,7 +2,7 @@
 //  CatImageViewModel.swift
 //  NetworkManagerPractice
 //
-//  Created by Jane Chao on 2023/4/1.
+//  Created by Jackie Lu on 2024/6/27.
 //
 
 import Foundation
@@ -17,6 +17,10 @@ struct CatImageViewModel: Identifiable {
 extension CatImageViewModel {
     init(_ image: CatAPIManager.ImageResponse) {
         self.init(id: image.id, url: image.url, width: image.width, height: image.height)
+    }
+    
+    init(favoriteItem: FavoriteItem) {
+        self.init(id: favoriteItem.imageID, url: favoriteItem.imageURL, width: nil, height: nil)
     }
 }
 

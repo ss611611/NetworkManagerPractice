@@ -2,21 +2,22 @@
 //  CatImageView.swift
 //  NetworkManagerPractice
 //
-//  Created by Jane Chao on 2023/4/1.
+//  Created by Jackie Lu on 2024/6/27.
 //
 
 import SwiftUI
 
 struct CatImageView: View {
     @State private var phase: AsyncImagePhase
+    @State private var isLoading: Bool = false
     private var session: URLSession = .imageSession
     
     private let catImage: CatImageViewModel
     private let isFavourited: Bool
-    private var onDoubleTap: () -> Void
+    private var onDoubleTap: () async -> Void
     
     
-    init(_ catImage: CatImageViewModel, isFavourited: Bool, session: URLSession = .imageSession, onDoubleTap: @escaping () -> Void) {
+    init(_ catImage: CatImageViewModel, isFavourited: Bool, session: URLSession = .imageSession, onDoubleTap: @escaping () async -> Void) {
         self.session  = session
         self.catImage = catImage
         self.isFavourited = isFavourited
@@ -45,7 +46,7 @@ struct CatImageView: View {
                 case .empty:
                     ProgressView()
                         .controlSize(.large)
-                        .task { await load() }
+                        .onAppear(perform: load)
                     
                 case .success(let image):
                     image
@@ -58,13 +59,34 @@ struct CatImageView: View {
                                 .padding()
                                 .foregroundStyle(.pink)
                         }
-                        .onTapGesture(count: 2, perform: onDoubleTap)
+                        .opacity(isLoading ? 0.5 : 1)
+                        .animation(.default, value: isLoading)
+                        .overlay(alignment: .topTrailing) {
+                            if isLoading {
+                                ProgressView()
+                                    .controlSize(.large)
+                                    .padding()
+                            }
+                        }
+                        .onTapGesture(count: 2) {
+                            Task {
+                                isLoading = true
+                                await onDoubleTap()
+                                isLoading = false
+                            }
+                        }
+                        .disabled(isLoading)
                     
                 case .failure:
                     Color(.systemGray6)
-                        .overlay {
+                    .overlay {
+                        VStack {
                             Text("圖片無法顯示")
+                            Button("重試") {
+                                phase = .empty
+                            }
                         }
+                    }
                     
                     
                 @unknown default:
@@ -79,17 +101,19 @@ struct CatImageView: View {
 
 
 private extension CatImageView {
-    func load() async {
-        do {
-            let urlRequest = URLRequest(url: catImage.url)
-            let data = try await session.data(for: urlRequest)
-            guard let uiImage = UIImage(data: data)  else {
-                throw URLSession.APIError.invalidData
+    func load() {
+        Task {
+            do {
+                let urlRequest = URLRequest(url: catImage.url)
+                let data = try await session.data(for: urlRequest)
+                guard let uiImage = UIImage(data: data) else {
+                    throw URLSession.APIError.invalidData
+                }
+                
+                phase = .success(.init(uiImage: uiImage))
+            } catch {
+                phase = .failure(error)
             }
-            
-            phase = .success(.init(uiImage: uiImage))
-        } catch {
-            phase = .failure(error)
         }
     }
 }
@@ -100,6 +124,7 @@ struct CatImageView_Previews: PreviewProvider, View {
     
     var body: some View {
         CatImageView([CatImageViewModel].stub.first!, isFavourited: isFavourited) {
+            try? await Task.sleep(for: .seconds(1))
             isFavourited.toggle()
         }
     }
